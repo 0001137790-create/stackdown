@@ -40,6 +40,13 @@ const MUTE_KEY = 'stackDownMuted';
 const COLS = 10;
 const ROWS = 20;
 const BLOCK_SIZE = 30;
+// ... (após todos os outros const de elementos)
+const muteButton = document.getElementById('muteButton');
+// --- EASTER EGG ELEMENT ---
+const easterEggCredits = document.getElementById('easterEggCredits'); 
+// --------------------------
+const HIGH_SCORE_KEY = 'meuTetrisHighScore';
+// ...
 
 // Cores
 const COLORS = [null, '#FF007F', '#00E5FF', '#FFD600', '#AD00FF', '#00FF9E', '#FF5733', '#FFFFFF'];
@@ -57,6 +64,18 @@ let dropInterval;
 let gameTimerInterval;
 let startTime;
 let lastTime = 0; // Movido para escopo global para o gameLoop
+
+// ... (após as variáveis de tempo)
+// Variáveis de Pausa
+let isPaused = false;
+let animationFrameId; // Guarda o ID do requestAnimationFrame
+
+// --- EASTER EGG VARIÁVEL ---
+const EASTER_EGG_SCORE_THRESHOLD = 500; // Pontuação mínima para ver o crédito secreto
+// ----------------------------
+
+// Variáveis de Recorde e Jogador
+// ...
 
 // Variáveis de Pausa
 let isPaused = false;
@@ -153,22 +172,38 @@ function checkAndSaveHighScore() {
     
     // 2. Preenche o modal de Fim de Jogo com os dados
     
-    // Mostra o nome do jogador e sua pontuação
-    gameOverPlayerName.textContent = playerName;
-    gameOverScore.textContent = score;
-    
-    // Mostra o recorde atual (que pode ter acabado de ser atualizado)
-    gameOverHighScoreName.textContent = currentHighScoreName;
-    gameOverHighScore.textContent = currentHighScore;
-    
-    // Muda o título se for um novo recorde
-    if (newRecord) {
-        gameOverTitle.textContent = "Novo Recorde!";
-        gameOverTitle.classList.add('new-record'); // Adiciona classe para o CSS (cor dourada)
-    } else {
-        gameOverTitle.textContent = "Fim de Jogo!";
-        gameOverTitle.classList.remove('new-record'); // Garante que a classe não esteja lá
-    }
+  // ... (dentro de checkAndSaveHighScore)
+
+    // 2. Preenche o modal de Fim de Jogo com os dados
+    
+    // Mostra o nome do jogador e sua pontuação
+    gameOverPlayerName.textContent = playerName;
+    gameOverScore.textContent = score;
+    
+    // Mostra o recorde atual (que pode ter acabado de ser atualizado)
+    gameOverHighScoreName.textContent = currentHighScoreName;
+    gameOverHighScore.textContent = currentHighScore;
+    
+    // Muda o título se for um novo recorde
+    if (newRecord) {
+        gameOverTitle.textContent = "Novo Recorde!";
+        gameOverTitle.classList.add('new-record'); // Adiciona classe para o CSS (cor dourada)
+    } else {
+        gameOverTitle.textContent = "Fim de Jogo!";
+        gameOverTitle.classList.remove('new-record'); // Garante que a classe não esteja lá
+    }
+
+    // --- INSERÇÃO DO EASTER EGG AQUI ---
+    const easterEggElement = document.getElementById('easterEggCredits');
+    if (score >= EASTER_EGG_SCORE_THRESHOLD && easterEggElement) {
+        easterEggElement.classList.remove('hidden');
+    } else if (easterEggElement) {
+        easterEggElement.classList.add('hidden');
+    }
+    // -------------------------------------
+
+    // 3. Esconde a área de jogo e mostra o modal de Fim de Jogo
+// ... (o restante da função)
 
     // 3. Esconde a área de jogo e mostra o modal de Fim de Jogo
     gameArea.classList.add('hidden');
