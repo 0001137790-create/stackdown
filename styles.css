@@ -546,3 +546,43 @@ canvas {
 #muteButton.muted {
     background-color: #ffc107; /* Amarelo */
 }
+
+/* --- ESTILOS PARA O EASTER EGG DE CRÉDITOS NO FIM DE JOGO --- */
+
+.easter-game-over {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.easter-game-over p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.easter-game-over span {
+    color: #ff5733; /* Cor de destaque para o coração */
+    font-size: 1.1rem;
+}
+
+.easter-game-over ul {
+    text-align: center;
+    padding-left: 0;
+}
+
+.easter-game-over li {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.secret-coder {
+    font-weight: 600;
+    color: var(--accent-color) !important; /* Destaca a linha secreta */
+    font-style: italic;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+    margin-top: 10px;
+}
+/* ----------------------------------------------------------------- */
